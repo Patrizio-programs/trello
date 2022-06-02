@@ -1,0 +1,69 @@
+.main {
+  background: url("https://images.pexels.com/photos/2469122/pexels-photo-2469122.jpeg")
+    no-repeat center center;
+  background-size: cover;
+  object-fit: contain;
+  height: 100vh;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  width: 272px;
+  max-width: 100%;
+  background-color: rgb(235, 236, 240);
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.main-tasks {
+  display: flex;
+  justify-content: space-evenly;
+  min-height: 100px;
+  max-height: 100%;
+}
+
+.footer {
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #026aa7;
+  line-height: 1.3;
+  height: 50px;
+}
+
+ul {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-gap: 24px;
+  justify-items: center;
+  margin: auto;
+  list-style: none;
+  color: white;
+}
+ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.main-add {
+  margin-top: 150px;
+}
+
+.taskname {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  padding: 5px;
+  width: 80%;
+  background-color: white;
+
+  box-shadow: -1px 5px 9px 6px rgba(0, 0, 0, 0.26);
+  -webkit-box-shadow: -1px 5px 9px 6px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: -1px 5px 9px 6px rgba(0, 0, 0, 0.26);
+}
