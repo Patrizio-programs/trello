@@ -6,53 +6,7 @@ import { Modal, Button, Group } from "@mantine/core";
 import Canvas from "./Canvas";
 
 function Main() {
-  if (document.querySelector(".dropzone")) {
-    const area = document.querySelectorAll(".dropzone");
-    const item = document.querySelectorAll(".taskname");
-
-    const dragstart = (e) => {
-      setTimeout(() => e.target.classList.add("hide"), 0);
-    };
-
-    const dragend = (e) => {
-      e.target.classList.remove("hide");
-    };
-
-    const dragover = (e) => {
-      e.preventDefault();
-    };
-
-    const dragenter = (e) => {
-      e.target.classList.add("hovered");
-    };
-
-    const dragleave = (e) => {
-      e.target.classList.remove("hovered");
-    };
-
-    const drop = (e) => {
-      e.target.classList.remove("hovered");
-      e.target.append(item);
-    };
-
-    
-
-    area.forEach((a) => {
-      a.addEventListener("dragover", dragover);
-      a.addEventListener("dragenter", dragenter);
-      a.addEventListener("dragleave", dragleave);
-      a.addEventListener("drop", drop);
-    });
-    if (item === null) {
-      console.log("empty");
-    } else {
-      item.addEventListener("dragend", dragend);
-
-      item.addEventListener("dragstart", dragstart);
-    }
-  }
-
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(["Your Task here"]);
   const todoref = useRef();
 
   useEffect(() => {
