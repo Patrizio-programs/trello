@@ -1,7 +1,9 @@
 function Task({ task }) {
   return (
-    <div className="taskname" draggable="true">
-      {task}
+    <div>
+      <div className="taskname" draggable="true">
+        {task}
+      </div>
     </div>
   );
 }

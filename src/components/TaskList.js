@@ -5,6 +5,7 @@ function TaskList({ title, tasks }) {
   return (
     <div className="task">
       <h3>{title}</h3>
+
       <div className="dropzone">
         {tasks.map((task) => {
           return <Task key={task} task={task} />;

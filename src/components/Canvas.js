@@ -1,5 +1,3 @@
-import React from "react";
-
 function Canvas({ title }) {
   return (
     <div className="task">

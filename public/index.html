@@ -7,10 +7,67 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
     <meta name="description" content="Trello Clone." />
     <link rel="apple-touch-icon" href="/trello/public/favicon.ico" />
-
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
     <title>Trello Clone</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <script>
+      const element = document.getElementsByClassName(".taskname");
+      var x = 0;
+      var y = 0;
+      interact(".dropzone").dropzone({
+        accept: ".taskname",
+        overlap: 0.75,
+
+        ondropactivate: function (event) {
+          // add active dropzone feedback
+          event.target.classList.add("drop-active");
+        },
+        ondragenter: function (event) {
+          var draggableElement = event.relatedTarget;
+          var dropzoneElement = event.target;
+
+          // feedback the possibility of a drop
+          dropzoneElement.classList.add("drop-target");
+          draggableElement.classList.add("can-drop");
+        },
+        ondragleave: function (event) {
+          // remove the drop feedback style
+          event.target.classList.remove("drop-target");
+          event.relatedTarget.classList.remove("can-drop");
+        },
+        ondrop: function (event) {},
+        ondropdeactivate: function (event) {
+          // remove active dropzone feedback
+          event.target.classList.remove("drop-active");
+          event.target.classList.remove("drop-target");
+        }
+      });
+
+      interact(element)
+        .draggable({
+          modifiers: [
+            interact.modifiers.snap({
+              targets: [interact.snappers.grid({ x: 30, y: 30 })],
+              range: Infinity,
+              relativePoints: [{ x: 0, y: 0 }]
+            }),
+            interact.modifiers.restrict({
+              restriction: element.parentNode,
+              elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+              endOnly: true
+            })
+          ],
+          inertia: true
+        })
+        .on("dragmove", function (event) {
+          x += event.dx;
+          y += event.dy;
+          event.target.style.transform = "translate(" + x + "px, " + y + "px)";
+        });
+    </script>
   </body>
 </html>
