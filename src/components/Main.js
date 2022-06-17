@@ -1,68 +1,86 @@
-import React, { useEffect } from "react";
 import "./Main.css";
-import { useState, useRef } from "react";
-import TaskList from "./TaskList";
-import { Modal, Button, Group } from "@mantine/core";
-import Canvas from "./Canvas";
+import Board from "react-trello";
 
 function Main() {
-  const [tasks, setTasks] = useState(["Your Task here"]);
-  const todoref = useRef();
-
-  useEffect(() => {
-    const Storage = JSON.parse(localStorage.getItem("tasks"));
-    if (Storage) setTasks(Storage);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  function handleAddTask(e) {
-    e.preventDefault();
-    const info = todoref.current.value;
-    setTasks([...tasks, info]);
-    if (info === "") return;
-    console.log(info);
-
-    todoref.current.value = null;
-  }
-
-  function AddTask() {
-    const [opened, setOpened] = useState(false);
-
-    return (
-      <>
-        <Modal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          title="Enter a new task"
-        >
+  let data = {
+    lanes: [
+      {
+        cards: [
           {
-            <form>
-              <textarea ref={todoref}></textarea>
-              <button onClick={handleAddTask}>Submit</button>
-            </form>
-          }
-        </Modal>
-
-        <Group position="center">
-          <Button onClick={() => setOpened(true)}>Add New Task</Button>
-        </Group>
-      </>
-    );
-  }
+            description: "Your Task here",
+            id: "open",
+            label: "Your label",
+            laneId: "open",
+            title: "Task Title",
+            style: {
+              backgroundColor: "white",
+            },
+          },
+        ],
+        currentPage: 1,
+        id: "open",
+        label: "",
+        style: {
+          width: 300,
+          color: "white",
+          backgroundColor: "#CE8964",
+        },
+        title: "To Do",
+      },
+      {
+        cards: [],
+        currentPage: 1,
+        id: "BLOCKED",
+        label: "",
+        style: {
+          width: 300,
+          color: "white",
+          backgroundColor: "#CE8964",
+        },
+        title: "Doing",
+      },
+      {
+        cards: [],
+        currentPage: 1,
+        id: "COMPLETED",
+        label: "",
+        style: {
+          width: 300,
+          color: "white",
+          backgroundColor: "#CE8964",
+        },
+        title: "Done",
+      },
+    ],
+  };
 
   return (
     <div className="main">
       <div className="main-tasks">
-        <TaskList title="To Do" tasks={tasks} />
-        <Canvas title="Doing" />
-        <Canvas title="Done" />
-      </div>
-
-      <div className="main-add">
-        <AddTask />
+        <Board
+          id="EditableBoard1"
+          className="board"
+          data={data}
+          draggable
+          droppable
+          handleDragEnd={function noRefCheck() {}}
+          handleDragStart={function noRefCheck() {}}
+          handleLaneDragEnd={function noRefCheck() {}}
+          handleLaneDragStart={function noRefCheck() {}}
+          onCardMoveAcrossLanes={function noRefCheck() {}}
+          editable
+          onCardAdd={function noRefCheck() {}}
+          onCardClick={function noRefCheck() {}}
+          onCardDelete={function noRefCheck() {}}
+          onDataChange={function noRefCheck() {}}
+          style={{
+            fontFamily: "Verdana",
+            padding: "30px 20px",
+            background: "transparent",
+            display: "flex",
+            height: "auto",
+          }}
+        />
       </div>
     </div>
   );
