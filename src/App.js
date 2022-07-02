@@ -6,7 +6,6 @@ import "firebase/compat/auth";
 import "firebase/analytics";
 import Main from "./components/Main";
 import { useAuthState } from "react-firebase-hooks/auth";
-import trello from "./images/Trello.png";
 import Public from "./Public";
 
 firebase.initializeApp({
@@ -69,7 +68,7 @@ function SignOut() {
 function Nav() {
   return (
     <div className="nav">
-      <img className="nav-logo" src={trello} alt="Trello Logo" />
+      <img className="nav-logo" src="https://raw.githubusercontent.com/Patrizio-programs/trello/7665f543bdd3db41535d8c2ba971f0ccc92f09a8/src/images/Trello.png" alt="Trello Logo" />
       <h1 className="nav_heading">Trello</h1>
       <div className="nav-button"></div>
       <SignOut />
